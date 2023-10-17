@@ -41,7 +41,7 @@ void Menu::findCostsame()
 {
     string a;
     setlocale(LC_ALL, "Russian");
-    cout << "\nР’РІРµРґРёС‚Рµ СЃС‚РѕРёРјРѕСЃС‚СЊ" << endl;
+    cout << "\nВведите стоимость" << endl;
     cin >> a;
     if (list.get_size() == 0)
     {
@@ -60,14 +60,14 @@ int Menu::show_options()
 {
     int c1;
     setlocale(LC_ALL, "Russian");
-    cout << "\nР’С‹Р±РёРµСЂРµС‚Рµ РїСѓРЅРєС‚ РјРµРЅСЋ" << endl;
-    cout << "1 - РџРѕРєР°Р·Р°С‚СЊ РІСЃРµ" << endl;
-    cout << "2 - РџРѕРјРµРЅСЏС‚СЊ С‡С‚Рѕ-С‚Рѕ РёР· РјРµРЅСЋ" << endl;
-    cout << "3 - Р”РѕР±Р°РІРёС‚СЊ РЅРѕРІСѓСЋ РІРµС‰СЊ" << endl;
-    cout << "4 - РЎРѕС…СЂР°РЅРёС‚СЊ РІСЃРµ РІ С„Р°Р№Р»" << endl;
-    cout << "5 - Р—Р°РіСЂСѓР·РёС‚СЊ РёРЅС„РѕСЂРјР°С†РёСЋ РёР· С„Р°Р№Р»Р°" << endl;
-    cout << "6 - РЈР±СЂР°С‚СЊ РєР°РєРѕР№-С‚Рѕ РїСЂРµРґРјРµС‚" << endl;
-    cout << "7 - РџРѕРёСЃРє С‚РѕРІР°СЂРѕРІ СЃ РѕРґРёРЅР°РєРѕРІРѕР№ С†РµРЅРѕР№" << endl;
+    cout << "\nВыбиерете пункт меню" << endl;
+    cout << "1 - Показать все" << endl;
+    cout << "2 - Поменять что-то из меню" << endl;
+    cout << "3 - Добавить новую вещь" << endl;
+    cout << "4 - Сохранить все в файл" << endl;
+    cout << "5 - Загрузить информацию из файла" << endl;
+    cout << "6 - Убрать какой-то предмет" << endl;
+    cout << "7 - Поиск товаров с одинаковой ценой" << endl;
     cout << "0 - Exit" << endl;
     cout << "->  ";
     cin >> c1;
@@ -81,7 +81,7 @@ void Menu::show_all_Bibliarys()
     {
         if (list.get_size() == 0)
         {
-            throw "РњР°РіР°Р·РёРЅ РїСѓСЃС‚.";
+            throw "Магазин пуст.";
         }
         for (int i = 0; i < list.get_size(); i++)
         {
@@ -100,20 +100,20 @@ void Menu::change_data()
     system("cls");
     try
     {
-        cout << "Р§С‚Рѕ С…РѕС‚РёС‚Рµ РїРѕРјРµРЅСЏС‚СЊ? " << list.get_size() << endl;
+        cout << "Что хотите поменять? " << list.get_size() << endl;
         cin >> c2;
 
         if ((c2 < 1) || (c2 > list.get_size()))
         {
-            throw "РћС€РёР±РєР°!";
+            throw "Ошибка!";
         }
 
         list[c2 - 1]->show();
-        cout << "РљР°РєСѓСЋ СЃС‚СЂРѕРєСѓ С…РѕС‚РёС‚Рµ РїРѕРјРµРЅСЏС‚СЊ?" << endl;
+        cout << "Какую строку хотите поменять?" << endl;
         cout << "->  ";
         cin >> c3;
         cin.ignore(32767, '\n');
-        cout << "Р§С‚Рѕ С…РѕС‚РёС‚Рµ Р·Р°РїРёСЃР°С‚СЊ СЃСЋРґР°?" << endl;
+        cout << "Что хотите записать сюда?" << endl;
         cout << "->  ";
         if (c3 == 5)
         {
@@ -129,7 +129,7 @@ void Menu::change_data()
                 }
                 catch (...)
                 {
-                    cout << "Р’РІРµРґРёС‚Рµ С‡РёСЃР»Рѕ" << endl;
+                    cout << "Введите число" << endl;
 
                 }
             }
@@ -139,7 +139,7 @@ void Menu::change_data()
         {
             getline(cin, redact);
             list[c2 - 1]->redact_str(c3, redact);
-            cout << "РР·РјРµРЅРµРЅРѕ" << endl;
+            cout << "Изменено" << endl;
         }
     }
     catch (const char* ex) { cout << ex << endl; }
@@ -150,11 +150,11 @@ void Menu::add_new()
 {
     int c2;
     system("cls");
-    cout << "\nР§С‚Рѕ РґРѕР±Р°РІРёС‚СЊ??" << endl;
-    cout << "1 - РљРЅРёРіСѓ" << endl;
-    cout << "2 - РЈС‡РµР±РЅРёРє" << endl;
-    cout << "3 - РљР°РЅС†РµР»СЏСЂРёСЋ" << endl;
-    cout << "0 - РќР°Р·Р°Рґ" << endl;
+    cout << "\nЧто добавить??" << endl;
+    cout << "1 - Книгу" << endl;
+    cout << "2 - Учебник" << endl;
+    cout << "3 - Канцелярию" << endl;
+    cout << "0 - Назад" << endl;
     cout << "->  ";
     cin >> c2;
 
@@ -166,7 +166,7 @@ void Menu::add_new()
         Bibliarys = book;
         book->rewrite();
         list.insert(Bibliarys);
-        cout << "Р”РѕР±Р°РІР»РµРЅР°." << endl;
+        cout << "Добавлена." << endl;
         break;
     case 2:
         Textbooks * Textbook;
@@ -174,7 +174,7 @@ void Menu::add_new()
         Bibliarys = Textbook;
         Textbook->rewrite();
         list.insert(Bibliarys);
-        cout << "Р”РѕР±Р°РІР»РµРЅ." << endl;
+        cout << "Добавлен." << endl;
         break;
     case 3:
         Canselars * emp;
@@ -182,7 +182,7 @@ void Menu::add_new()
         Bibliarys = emp;
         emp->rewrite();
         list.insert(Bibliarys);
-        cout << "Р”РѕР±Р°РІР»РµРЅР°." << endl;
+        cout << "Добавлена." << endl;
         break;
     default:
         break;
@@ -197,10 +197,10 @@ void Menu::save_to_file()
     {
         if (list.get_size() == 0)
         {
-            throw "РќРµС‡РµРіРѕ СЃРѕС…СЂР°РЅСЏС‚СЊ";
+            throw "Нечего сохранять";
         }
         list.save();
-        cout << "РЎРѕС…СЂР°РЅРµРЅРѕ" << endl;
+        cout << "Сохранено" << endl;
     }
     catch (const char* ex) { cout << ex << endl; }
     system("pause");
@@ -212,7 +212,7 @@ void Menu::load_from_file()
     try
     {
         list.load();
-        cout << "Р—Р°РіСЂСѓР¶РµРЅРѕ" << endl;
+        cout << "Загружено" << endl;
     }
     catch (const char* ex) { cout << ex << endl; }
 }
@@ -221,7 +221,7 @@ void Menu::delete_Bibliary()
 {
     int c2;
     system("cls");
-    cout << "Р§С‚Рѕ С…РѕС‚РёС‚Рµ СѓРґР°Р»РёС‚СЊ? " << list.get_size() << endl;
+    cout << "Что хотите удалить? " << list.get_size() << endl;
     for (int i = 0; i < list.get_size(); i++)
     {
         cout << "_" << endl;
@@ -234,10 +234,10 @@ void Menu::delete_Bibliary()
     try {
         if ((c2 < 1) || (c2 > list.get_size()))
         {
-            throw "РќРµРІРµСЂРЅС‹Р№ РЅРѕРјРµСЂ";
+            throw "Неверный номер";
         }
         list.remove(c2 - 1);
-        cout << "РџРѕС‚СЂР°С‡РµРЅРѕ" << endl;
+        cout << "Потрачено" << endl;
         system("pause");
     }
     catch (const char* i)
